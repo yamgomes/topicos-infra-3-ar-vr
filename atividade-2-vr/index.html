@@ -1,0 +1,76 @@
+<html>
+
+<head>
+  <meta aframe-injected="" name="mobile-web-app-capable" content="yes">
+  <meta aframe-injected="" name="viewport"
+    content="width=device-width,initial-scale=1,maximum-scale=1,shrink-to-fit=no,user-scalable=no,minimal-ui,viewport-fit=cover">
+  <script
+    src="https://cdn.jsdelivr.net/npm/aframe-mouse-cursor-component@0.5.3/dist/aframe-mouse-cursor-component.min.js"></script>
+  <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+  <script>
+    AFRAME.registerComponent('sombzz', {
+      init: function () {
+        let audio = document.querySelector("#bzz");
+        this.el.addEventListener('click', () => {
+            audio.play();
+        });
+      }
+    });
+    AFRAME.registerComponent('somlatido', {
+      init: function () {
+        let audiolatido = document.querySelector("#latido");
+        this.el.addEventListener('click', () => {
+            audiolatido.play();
+        });
+      }
+    });
+    AFRAME.registerComponent('somdeaviao', {
+      init: function () {
+        let audioaviao = document.querySelector("#aviaosom");
+        this.el.addEventListener('click', () => {
+            audioaviao.play();
+        });
+      }
+    });
+  </script>
+</head>
+
+<body>
+  <a-scene cursor="rayOrigin: mouse">
+    <a-assets>
+      <audio id="bzz" src="assets/audio/abelha.mp3"></audio>
+      <audio id="latido" src="assets/audio/latido.mp3"></audio>
+      <audio id="aviaosom" src="assets/audio/aviaotom.mp3"></audio>
+      <img id="rua" src="assets/rua.jpg"></img>
+      <a-asset-item id="poste" src="assets/poste/scene.gltf"></a-asset-item>
+      <a-asset-item id="aviao" src="assets/aviao/scene.gltf"></a-asset-item>
+      <a-asset-item id="shiba" src="assets/shiba/scene.gltf"></a-asset-item>
+      <a-asset-item id="abelha" src="assets/bee/scene.gltf"></a-asset-item>
+    </a-assets>
+    <a-text value="Olhe para o aviao, para o poste, para o cachorro e para a abelha para alongar seu pescoco" color="black" position="0 1.7 -5" align="center"></a-text>
+    <a-entity gltf-model="#poste" scale="0.5 0.5 0.5" position="3 0 -0.5"></a-entity>
+    <a-entity somdeaviao gltf-model="#aviao" scale="0.5 0.5 0.5" position="0 30 -20" rotation="0 90 0"></a-entity>
+    <a-entity somlatido gltf-model="#shiba" position="-3 1 -0.5" rotation="0 80 0"></a-entity>
+    <a-entity sombzz gltf-model="#abelha" scale="0.5 0.5 0.5" position="0.1 1 -0.3"></a-entity>
+
+    <a-plane position="0 0 -1" rotation="-90 0 0" width="40" height="40" color="#7BC8A4" src="#rua">
+    </a-plane>
+    <a-sky color="#87CEeb"></a-sky>
+
+
+    <div class="a-enter-vr" aframe-injected="">
+      <button class="a-enter-vr-button" title="Enter VR mode with a headset
+                                         or fullscreen mode on a desktop.
+                                         Visit https://webvr.rocks or https://webvr.info for more information."
+        aframe-injected="">
+      </button>
+    </div>
+    <div class="a-enter-ar a-hidden" aframe-injected=""><button class="a-enter-ar-button"
+        title="Enter AR mode with a headset or handheld device. Visit https://webvr.rocks or https://webvr.info for more information."
+        aframe-injected=""></button></div>
+    <div class="a-orientation-modal a-hidden" aframe-injected=""><button aframe-injected="">Exit VR</button></div>
+
+  </a-scene>
+</body>
+
+</html>
