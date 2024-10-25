@@ -8,11 +8,21 @@
     src="https://cdn.jsdelivr.net/npm/aframe-mouse-cursor-component@0.5.3/dist/aframe-mouse-cursor-component.min.js"></script>
   <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
   <script>
+    const TEMPO_ALONGAMENTO = 5000;
     AFRAME.registerComponent('sombzz', {
       init: function () {
         let audio = document.querySelector("#bzz");
         this.el.addEventListener('click', () => {
             audio.play();
+        });
+        let bzzCallbackReference;
+        this.el.addEventListener('mouseenter', () => {
+          bzzCallbackReference = setTimeout(() => {
+            audio.play();
+          }, TEMPO_ALONGAMENTO);
+        });
+        this.el.addEventListener('mouseleave', () => {
+          clearInterval(bzzCallbackReference);
         });
       }
     });
@@ -22,6 +32,15 @@
         this.el.addEventListener('click', () => {
             audiolatido.play();
         });
+        let latidoCallbackReference;
+        this.el.addEventListener('mouseenter', () => {
+          latidoCallbackReference = setTimeout(() => {
+            audiolatido.play();
+          }, TEMPO_ALONGAMENTO);
+        });
+        this.el.addEventListener('mouseleave', () => {
+          clearInterval(latidoCallbackReference);
+        });
       }
     });
     AFRAME.registerComponent('somdeaviao', {
@@ -29,6 +48,32 @@
         let audioaviao = document.querySelector("#aviaosom");
         this.el.addEventListener('click', () => {
             audioaviao.play();
+        });
+        let aviaoCallbackReference;
+        this.el.addEventListener('mouseenter', () => {
+          aviaoCallbackReference = setTimeout(() => {
+            audioaviao.play();
+          }, TEMPO_ALONGAMENTO);
+        });
+        this.el.addEventListener('mouseleave', () => {
+          clearInterval(aviaoCallbackReference);
+        });
+      }
+    });
+    AFRAME.registerComponent('somdefogo', {
+      init: function () {
+        let audiofogo = document.querySelector("#fogosom");
+        this.el.addEventListener('click', () => {
+            audiofogo.play();
+        });
+        let fogoCallbackReference;
+        this.el.addEventListener('mouseenter', () => {
+          fogoCallbackReference = setTimeout(() => {
+            audiofogo.play();
+          }, TEMPO_ALONGAMENTO);
+        });
+        this.el.addEventListener('mouseleave', () => {
+          clearInterval(fogoCallbackReference);
         });
       }
     });
@@ -41,17 +86,21 @@
       <audio id="bzz" src="assets/audio/abelha.mp3"></audio>
       <audio id="latido" src="assets/audio/latido.mp3"></audio>
       <audio id="aviaosom" src="assets/audio/aviaotom.mp3"></audio>
+      <audio id="fogosom" src="assets/audio/fogo.mp3"></audio>
       <img id="rua" src="assets/rua.jpg"></img>
       <a-asset-item id="poste" src="assets/poste/scene.gltf"></a-asset-item>
       <a-asset-item id="aviao" src="assets/aviao/scene.gltf"></a-asset-item>
       <a-asset-item id="shiba" src="assets/shiba/scene.gltf"></a-asset-item>
       <a-asset-item id="abelha" src="assets/bee/scene.gltf"></a-asset-item>
     </a-assets>
-    <a-text value="Olhe para o aviao, para o poste, para o cachorro e para a abelha para alongar seu pescoco" color="black" position="0 1.7 -5" align="center"></a-text>
-    <a-entity gltf-model="#poste" scale="0.5 0.5 0.5" position="3 0 -0.5"></a-entity>
+    <a-camera>
+      <a-cursor></a-cursor>
+    </a-camera>
+    <a-text value="Mantenha o olhar no aviao, no poste, no cachorro e na abelha até escutar seu som para alongar seu pescoco" color="black" position="0 1.7 -5" align="center"></a-text>
+    <a-entity somdefogo gltf-model="#poste" scale="0.5 0.5 0.5" position="3 0 -0.5"></a-entity>
     <a-entity somdeaviao gltf-model="#aviao" scale="0.5 0.5 0.5" position="0 30 -20" rotation="0 90 0"></a-entity>
     <a-entity somlatido gltf-model="#shiba" position="-3 1 -0.5" rotation="0 80 0"></a-entity>
-    <a-entity sombzz gltf-model="#abelha" scale="0.5 0.5 0.5" position="0.1 1 -0.3"></a-entity>
+    <a-entity sombzz gltf-model="#abelha" scale="0.5 0.5 0.5" position="0.1 0.2 -0.7"></a-entity>
 
     <a-plane position="0 0 -1" rotation="-90 0 0" width="40" height="40" color="#7BC8A4" src="#rua">
     </a-plane>
